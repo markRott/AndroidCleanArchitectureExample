@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+
+        applicationId "com.stdmar.fcleanarchprj"
+
+        minSdkVersion 21
+        targetSdkVersion 26
+
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    lintOptions{
+        abortOnError false
+    }
+}
+
+dependencies {
+
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+
+    compile project(':domain')
+    compile project(':device')
+    compile project(':data')
+
+
+    compile "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit2}"
+    compile "com.squareup.retrofit2:converter-gson:${rootProject.ext.converterGson}"
+//    compile "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.adapterRxjava}"
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${rootProject.ext.rxJavaAdapter}"
+
+    compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava}"
+    compile "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroid}"
+    compile "com.google.dagger:dagger:${rootProject.ext.dagger2}"
+    compile "com.jakewharton:butterknife:${rootProject.ext.butterknife}"
+    compile "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerCompiler}"
+
+
+    compile "com.arello-mobile:moxy:${rootProject.ext.moxy}"
+    annotationProcessor "com.arello-mobile:moxy-compiler:${rootProject.ext.moxyCompiler}"
+    compile "com.arello-mobile:moxy-app-compat:${rootProject.ext.moxyAppCompat}"
+
+    testCompile 'junit:junit:4.12'
+}
