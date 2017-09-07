@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.LoginDomainModel;
+import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
 
@@ -41,7 +42,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     protected void inject() {
-
+        MyApplication.getComponentsHelper().initLoginComponent();
     }
 
     @OnClick(R.id.btn_login)

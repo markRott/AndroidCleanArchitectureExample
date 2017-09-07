@@ -1,5 +1,6 @@
 package com.sma.data.rest;
 
+import com.sma.data.entity.LoginEntity;
 import com.sma.data.entity.UserEntity;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface IApplicationApi {
 
     @GET(baseUrl + "users.json")
     Flowable<List<UserEntity>> fetchUsers();
+
+    @GET("http://www.mocky.io/v2/59b12fe32600009305287ef9")
+    Flowable<LoginEntity> login(final String login, final String password);
 }

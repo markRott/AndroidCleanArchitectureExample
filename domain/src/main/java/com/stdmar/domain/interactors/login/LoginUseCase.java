@@ -1,7 +1,7 @@
 package com.stdmar.domain.interactors.login;
 
+import com.stdmar.domain.ILoginRepository;
 import com.stdmar.domain.IPostExecutionThread;
-import com.stdmar.domain.IRepository;
 import com.stdmar.domain.interactors.BaseUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
 
@@ -13,12 +13,11 @@ import io.reactivex.Flowable;
 
 public class LoginUseCase extends BaseUseCase<LoginDomainModel, LoginUseCase.Params> {
 
-    private IRepository repository;
+    private ILoginRepository repository;
 
-    public LoginUseCase(IPostExecutionThread thread, IRepository rep) {
-
+    public LoginUseCase(IPostExecutionThread thread, ILoginRepository repo) {
         super(thread);
-        this.repository = rep;
+        this.repository = repo;
     }
 
     @Override

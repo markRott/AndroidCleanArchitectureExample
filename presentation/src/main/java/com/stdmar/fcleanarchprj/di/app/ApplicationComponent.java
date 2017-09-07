@@ -3,11 +3,9 @@ package com.stdmar.fcleanarchprj.di.app;
 import android.content.Context;
 
 import com.sma.data.rest.IApplicationApi;
-import com.stdmar.fcleanarchprj.ui.MainActivity;
 import com.stdmar.fcleanarchprj.di.network.ApplicationApiModule;
-import com.stdmar.fcleanarchprj.di.repository.RepositoryModule;
 import com.stdmar.fcleanarchprj.di.schedulemainthread.ScheduleMainThreadModule;
-import com.stdmar.fcleanarchprj.di.usecase.UsersUseCaseModule;
+import com.stdmar.fcleanarchprj.login.LoginActivity;
 import com.stdmar.fcleanarchprj.presenters.UsersPresenter;
 
 import javax.inject.Singleton;
@@ -23,13 +21,14 @@ import dagger.Component;
         ApplicationModule.class,
         ApplicationApiModule.class,
         ScheduleMainThreadModule.class,
-        UsersUseCaseModule.class,
-        RepositoryModule.class
+//        UsersUseCaseModule.class,
+//        RepositoryModule.class
 
 })
 public interface ApplicationComponent {
 
-    void inject(MainActivity mainActivity);
+//    void inject(MainActivity mainActivity);
+    void inject(LoginActivity loginActivity);
 
     void injectUsersPresenter(UsersPresenter usersPresenter);
 

@@ -5,7 +5,6 @@ import com.sma.data.entity.mapper.UserEntityDataMapper;
 import com.sma.data.repository.datasource.IUserDataStore;
 import com.sma.data.repository.datasource.UserDataStoreFactory;
 import com.stdmar.domain.IRepository;
-import com.stdmar.domain.models.LoginDomainModel;
 import com.stdmar.domain.models.UserDomainModel;
 
 import java.util.List;
@@ -26,11 +25,6 @@ public class UserRepositoryImpl implements IRepository {
     public UserRepositoryImpl(UserDataStoreFactory factory, UserEntityDataMapper mapper) {
         userDataStoreFactory = factory;
         userEntityDataMapper = mapper;
-    }
-
-    @Override
-    public Flowable<LoginDomainModel> login(String login, String password) {
-        return null;
     }
 
     @Override

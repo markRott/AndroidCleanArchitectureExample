@@ -5,6 +5,9 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.stdmar.domain.interactors.login.LoginUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
+import com.stdmar.fcleanarchprj.MyApplication;
+
+import javax.inject.Inject;
 
 /**
  * Created by sma on 07.09.17.
@@ -13,7 +16,14 @@ import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
 @InjectViewState
 public class LoginPresenter extends MvpPresenter<ILoginView> {
 
+    @Inject
     private LoginUseCase loginUseCase;
+
+    public LoginPresenter() {
+
+        MyApplication.getComponentsHelper().getLoginComponent().inject(this);
+        System.out.println("loginUseCase = " + loginUseCase);
+    }
 
     public void runLoginUseCase(final String login, final String password) {
         if (loginUseCase == null) return;
