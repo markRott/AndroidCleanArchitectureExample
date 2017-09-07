@@ -29,7 +29,7 @@ android {
         exclude 'META-INF/rxjava.properties'
     }
 
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
 }
@@ -50,7 +50,6 @@ dependencies {
 
     compile "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofit2}"
     compile "com.squareup.retrofit2:converter-gson:${rootProject.ext.converterGson}"
-//    compile "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.adapterRxjava}"
     compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${rootProject.ext.rxJavaAdapter}"
 
     compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava}"
@@ -58,13 +57,14 @@ dependencies {
     compile "com.google.dagger:dagger:${rootProject.ext.dagger2}"
     compile "com.jakewharton:butterknife:${rootProject.ext.butterknife}"
     compile "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerCompiler}"
-
-
     compile "com.arello-mobile:moxy:${rootProject.ext.moxy}"
     annotationProcessor "com.arello-mobile:moxy-compiler:${rootProject.ext.moxyCompiler}"
     compile "com.arello-mobile:moxy-app-compat:${rootProject.ext.moxyAppCompat}"
 
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    compile "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }

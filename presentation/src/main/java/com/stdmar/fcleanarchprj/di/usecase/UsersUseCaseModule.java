@@ -2,7 +2,7 @@ package com.stdmar.fcleanarchprj.di.usecase;
 
 import com.stdmar.domain.IRepository;
 import com.stdmar.domain.IPostExecutionThread;
-import com.stdmar.domain.interactors.UsersUseCase;
+import com.stdmar.domain.interactors.user.UsersUseCase;
 
 import javax.inject.Singleton;
 

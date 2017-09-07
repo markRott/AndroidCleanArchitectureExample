@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.stdmar.fcleanarchprj.MainActivity">
+    tools:context="com.stdmar.fcleanarchprj.ui.MainActivity">
 
     <Button
         android:id="@+id/btn_load_users"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="48dp"
         android:text="Load users"
         android:textAllCaps="false" />
 
@@ -20,5 +20,6 @@
         android:id="@+id/tv_load_label"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
+
 
 </LinearLayout>

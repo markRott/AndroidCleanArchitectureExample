@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.di;
+package com.stdmar.fcleanarchprj.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

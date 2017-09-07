@@ -1,7 +1,8 @@
-package com.stdmar.domain.interactors;
+package com.stdmar.domain.interactors.user;
 
 import com.stdmar.domain.IRepository;
 import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interactors.BaseUseCase;
 import com.stdmar.domain.models.UserDomainModel;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class UsersUseCase extends BaseUseCase<List<UserDomainModel>, Void> {
     }
 
     @Override
-    Flowable<List<UserDomainModel>> buildUseCaseObservable(Void unused) {
+    public Flowable<List<UserDomainModel>> buildUseCaseObservable(Void unused) {
 
         return repository.getUsers();
     }

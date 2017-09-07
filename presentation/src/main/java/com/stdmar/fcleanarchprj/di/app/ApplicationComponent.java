@@ -3,7 +3,7 @@ package com.stdmar.fcleanarchprj.di.app;
 import android.content.Context;
 
 import com.sma.data.rest.IApplicationApi;
-import com.stdmar.fcleanarchprj.MainActivity;
+import com.stdmar.fcleanarchprj.ui.MainActivity;
 import com.stdmar.fcleanarchprj.di.network.ApplicationApiModule;
 import com.stdmar.fcleanarchprj.di.repository.RepositoryModule;
 import com.stdmar.fcleanarchprj.di.schedulemainthread.ScheduleMainThreadModule;

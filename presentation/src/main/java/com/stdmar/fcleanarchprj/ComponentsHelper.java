@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.di;
+package com.stdmar.fcleanarchprj;
 
 import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.di.app.ApplicationComponent;

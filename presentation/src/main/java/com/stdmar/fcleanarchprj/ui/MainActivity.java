@@ -1,11 +1,13 @@
-package com.stdmar.fcleanarchprj;
+package com.stdmar.fcleanarchprj.ui;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.stdmar.fcleanarchprj.di.BaseActivity;
+import com.stdmar.fcleanarchprj.MyApplication;
+import com.stdmar.fcleanarchprj.R;
+import com.stdmar.fcleanarchprj.base.BaseActivity;
 import com.stdmar.fcleanarchprj.presenters.UsersPresenter;
 import com.stdmar.fcleanarchprj.viewsinterface.ILoadUsers;
 
@@ -31,8 +33,7 @@ public class MainActivity extends BaseActivity implements ILoadUsers {
 
     @Override
     protected void inject() {
-//        myApplication = (MyApplication) getApplication();
-//        myApplication.getApplicationComponent().inject(this);
+
         MyApplication.getComponentsHelper().getApplicationComponent().inject(this);
     }
 
@@ -46,12 +47,12 @@ public class MainActivity extends BaseActivity implements ILoadUsers {
     @Override
     public void showLoadLabel() {
 
-        tvLoadLabel.setText("Loading...");
+        tvLoadLabel.setText(R.string.msg_loading);
     }
 
     @Override
     public void hideLoadLabel() {
 
-        tvLoadLabel.setVisibility(View.GONE);
+        tvLoadLabel.setText(R.string.msg_success);
     }
 }

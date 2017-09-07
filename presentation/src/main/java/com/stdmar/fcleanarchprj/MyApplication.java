@@ -2,8 +2,6 @@ package com.stdmar.fcleanarchprj;
 
 import android.app.Application;
 
-import com.stdmar.fcleanarchprj.di.ComponentsHelper;
-
 /**
  * Created by sma on 06.09.17.
  */

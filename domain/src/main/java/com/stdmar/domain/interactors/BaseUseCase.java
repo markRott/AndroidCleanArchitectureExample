@@ -17,7 +17,7 @@ public abstract class BaseUseCase<T, Params> {
     private CompositeDisposable disposables;
     private IPostExecutionThread postExecutionThread;
 
-    abstract Flowable<T> buildUseCaseObservable(Params params);
+    public abstract Flowable<T> buildUseCaseObservable(Params params);
 
     public BaseUseCase(IPostExecutionThread thread) {
 

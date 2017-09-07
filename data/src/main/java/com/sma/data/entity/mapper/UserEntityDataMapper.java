@@ -14,30 +14,24 @@ import java.util.List;
 public class UserEntityDataMapper {
 
     public UserDomainModel transform(UserEntity userEntity) {
-
         UserDomainModel user = null;
-
         if (userEntity != null) {
-
             user = new UserDomainModel(userEntity.getUserId());
-
             user.setCoverUrl(userEntity.getCoverUrl());
-            user.setFullName(userEntity.getFullname());
+            user.setFullName(userEntity.getFullName());
             user.setDescription(userEntity.getDescription());
             user.setFollowers(userEntity.getFollowers());
             user.setEmail(userEntity.getEmail());
         }
-
         return user;
     }
 
     public List<UserDomainModel> transform(Collection<UserEntity> userEntityCollection) {
-        final List<UserDomainModel> userList = new ArrayList<>(20);
+        final List<UserDomainModel> userList = new ArrayList<>();
         for (UserEntity userEntity : userEntityCollection) {
             final UserDomainModel user = transform(userEntity);
-            if (user != null) {
-                userList.add(user);
-            }
+            if (user == null) continue;
+            userList.add(user);
         }
         return userList;
     }

@@ -27,7 +27,6 @@ public class UserEntity {
     private String email;
 
     public UserEntity() {
-        //empty
     }
 
     public void setUserId(int userId) {
@@ -38,7 +37,7 @@ public class UserEntity {
         this.coverUrl = coverUrl;
     }
 
-    public void setFullname(String fullname) {
+    public void setFullName(String fullname) {
         this.fullname = fullname;
     }
 
@@ -62,7 +61,7 @@ public class UserEntity {
         return coverUrl;
     }
 
-    public String getFullname() {
+    public String getFullName() {
         return fullname;
     }
 
@@ -76,5 +75,17 @@ public class UserEntity {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "userId=" + userId +
+                ", coverUrl='" + coverUrl + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", description='" + description + '\'' +
+                ", followers=" + followers +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

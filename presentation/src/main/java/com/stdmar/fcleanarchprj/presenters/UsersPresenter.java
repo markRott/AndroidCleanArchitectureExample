@@ -2,7 +2,7 @@ package com.stdmar.fcleanarchprj.presenters;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.stdmar.domain.interactors.UsersUseCase;
+import com.stdmar.domain.interactors.user.UsersUseCase;
 import com.stdmar.domain.models.UserDomainModel;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
 import com.stdmar.fcleanarchprj.MyApplication;
@@ -23,12 +23,12 @@ public class UsersPresenter extends MvpPresenter<ILoadUsers> {
     UsersUseCase usersUseCase;
 
     public UsersPresenter() {
-        getViewState().showLoadLabel();
         MyApplication.getComponentsHelper().getApplicationComponent().injectUsersPresenter(this);
     }
 
     public void fetchUsers() {
         if (usersUseCase == null) return;
+        getViewState().showLoadLabel();
         usersUseCase.execute(new UsersObserver(), null);
     }
 
