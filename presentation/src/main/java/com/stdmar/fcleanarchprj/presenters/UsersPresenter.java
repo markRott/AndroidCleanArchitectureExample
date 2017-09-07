@@ -5,12 +5,9 @@ import com.arellomobile.mvp.MvpPresenter;
 import com.stdmar.domain.interactors.user.UsersUseCase;
 import com.stdmar.domain.models.UserDomainModel;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.viewsinterface.ILoadUsers;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  * Created by sma on 06.09.17.
@@ -19,11 +16,12 @@ import javax.inject.Inject;
 @InjectViewState
 public class UsersPresenter extends MvpPresenter<ILoadUsers> {
 
-    @Inject
+//    @Inject
     UsersUseCase usersUseCase;
 
     public UsersPresenter() {
-        MyApplication.getComponentsHelper().getApplicationComponent().injectUsersPresenter(this);
+
+//        MyApplication.getComponentsHelper().getApplicationComponent().injectUsersPresenter(this);
     }
 
     public void fetchUsers() {

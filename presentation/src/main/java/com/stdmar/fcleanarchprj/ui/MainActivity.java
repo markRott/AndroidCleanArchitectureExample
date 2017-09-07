@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
 import com.stdmar.fcleanarchprj.presenters.UsersPresenter;
@@ -34,7 +33,7 @@ public class MainActivity extends BaseActivity implements ILoadUsers {
     @Override
     protected void inject() {
 
-        MyApplication.getComponentsHelper().getApplicationComponent().inject(this);
+//        MyApplication.getComponentsHelper().getApplicationComponent().inject(this);
     }
 
     @OnClick(R.id.btn_load_users)

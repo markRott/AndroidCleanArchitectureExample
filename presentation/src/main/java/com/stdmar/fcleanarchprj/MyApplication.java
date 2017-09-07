@@ -24,6 +24,6 @@ public class MyApplication extends Application {
 
     private void initComponentsHelper() {
         componentsHelper = new ComponentsHelper();
-        componentsHelper.initApplicationComponent(this);
+        componentsHelper.initMyApplicationComponent(this);
     }
 }

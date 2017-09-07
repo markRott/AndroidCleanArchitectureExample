@@ -10,5 +10,5 @@ import io.reactivex.Flowable;
 
 public interface ILoginRepository {
 
-    Flowable<LoginDomainModel> login(final String login, final String password);
+    Flowable<LoginDomainModel> login(/*final String login, final String password*/);
 }

@@ -17,19 +17,17 @@ import javax.inject.Inject;
 public class LoginPresenter extends MvpPresenter<ILoginView> {
 
     @Inject
-    private LoginUseCase loginUseCase;
+    LoginUseCase loginUseCase;
 
-    public LoginPresenter() {
+    public void inject() {
 
-        MyApplication.getComponentsHelper().getLoginComponent().inject(this);
-        System.out.println("loginUseCase = " + loginUseCase);
+        MyApplication.getComponentsHelper().getLoginComponent().injectToLoginPresenter(this);
     }
 
-    public void runLoginUseCase(final String login, final String password) {
+    public void runLoginUseCase(/*final String login, final String password*/) {
         if (loginUseCase == null) return;
         actionWithViewBeforeLogin();
-        loginUseCase.execute(new LoginFlowable(),
-                LoginUseCase.Params.initParams(login, password));
+        loginUseCase.execute(new LoginFlowable(), null);
     }
 
     private void actionWithViewBeforeLogin() {
@@ -44,6 +42,7 @@ public class LoginPresenter extends MvpPresenter<ILoginView> {
 
     private void loginCompleteState() {
 
+        getViewState().enableViews();
         getViewState().hideProgressBar();
     }
 
@@ -63,6 +62,7 @@ public class LoginPresenter extends MvpPresenter<ILoginView> {
 
         @Override
         public void onError(Throwable t) {
+            getViewState().enableViews();
             loginErrorState(t.getMessage());
         }
 

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.LoginDomainModel;
@@ -19,8 +19,8 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements ILoginView {
 
-    @BindView(R.id.ll_login_data_container)
-    LinearLayout llLoginDataContainer;
+    //    @BindView(R.id.ll_login_data_container)
+//    LinearLayout llLoginDataContainer;
     @BindView(R.id.edt_login)
     EditText edtLogin;
     @BindView(R.id.edt_password)
@@ -42,15 +42,17 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     protected void inject() {
+
         MyApplication.getComponentsHelper().initLoginComponent();
+        loginPresenter.inject();
     }
 
     @OnClick(R.id.btn_login)
     public void clickOnLogin() {
         if (loginPresenter == null) return;
-        final String login = getText(edtLogin);
-        final String password = getText(edtPassword);
-        loginPresenter.runLoginUseCase(login, password);
+//        final String login = getText(edtLogin);
+//        final String password = getText(edtPassword);
+        loginPresenter.runLoginUseCase(/*login, password*/);
     }
 
     @Override
@@ -68,13 +70,13 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void disableViews() {
 
-        llLoginDataContainer.setEnabled(false);
+        enableOrDisableView(false, edtLogin, edtPassword, btnLogin);
     }
 
     @Override
     public void enableViews() {
 
-        llLoginDataContainer.setEnabled(true);
+        enableOrDisableView(true, edtLogin, edtPassword, btnLogin);
     }
 
     @Override
@@ -85,6 +87,13 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void showErrorMessage(String errorMsg) {
 
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void enableOrDisableView(boolean state, View... views) {
+        for (int i = 0; i < views.length; i++) {
+            views[i].setEnabled(state);
+        }
     }
 
     private String getText(final EditText edt) {

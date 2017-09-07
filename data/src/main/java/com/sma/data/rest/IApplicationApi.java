@@ -21,5 +21,5 @@ public interface IApplicationApi {
     Flowable<List<UserEntity>> fetchUsers();
 
     @GET("http://www.mocky.io/v2/59b12fe32600009305287ef9")
-    Flowable<LoginEntity> login(final String login, final String password);
+    Flowable<LoginEntity> login(/*final String login, final String password*/);
 }
