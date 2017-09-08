@@ -1,11 +1,11 @@
 package com.stdmar.fcleanarchprj.login;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
 import com.stdmar.domain.interactors.login.LoginUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
 import com.stdmar.fcleanarchprj.MyApplication;
+import com.stdmar.fcleanarchprj.base.BasePresenter;
 
 import javax.inject.Inject;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
  */
 
 @InjectViewState
-public class LoginPresenter extends MvpPresenter<ILoginView> {
+public class LoginPresenter extends BasePresenter<ILoginView> {
 
     @Inject
     LoginUseCase loginUseCase;
@@ -24,7 +24,7 @@ public class LoginPresenter extends MvpPresenter<ILoginView> {
         MyApplication.getComponentsHelper().getLoginComponent().injectToLoginPresenter(this);
     }
 
-    public void runLoginUseCase(/*final String login, final String password*/) {
+    public void runLoginUseCase() {
         if (loginUseCase == null) return;
         actionWithViewBeforeLogin();
         loginUseCase.execute(new LoginFlowable(), null);
@@ -68,6 +68,7 @@ public class LoginPresenter extends MvpPresenter<ILoginView> {
 
         @Override
         public void onComplete() {
+
             loginCompleteState();
         }
     }

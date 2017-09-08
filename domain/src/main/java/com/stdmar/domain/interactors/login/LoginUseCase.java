@@ -23,7 +23,7 @@ public class LoginUseCase extends BaseUseCase<LoginDomainModel, LoginUseCase.Par
     @Override
     public Flowable<LoginDomainModel> buildUseCaseObservable(final Params params) {
 
-        return repository.login(/*params.login, params.password*/);
+        return repository.login();
     }
 
     public static final class Params {

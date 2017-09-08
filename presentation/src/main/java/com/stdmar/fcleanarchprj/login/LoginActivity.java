@@ -19,8 +19,6 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements ILoginView {
 
-    //    @BindView(R.id.ll_login_data_container)
-//    LinearLayout llLoginDataContainer;
     @BindView(R.id.edt_login)
     EditText edtLogin;
     @BindView(R.id.edt_password)
@@ -50,9 +48,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @OnClick(R.id.btn_login)
     public void clickOnLogin() {
         if (loginPresenter == null) return;
-//        final String login = getText(edtLogin);
-//        final String password = getText(edtPassword);
-        loginPresenter.runLoginUseCase(/*login, password*/);
+        loginPresenter.runLoginUseCase();
     }
 
     @Override
@@ -82,22 +78,20 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void successLogin(LoginDomainModel loginDomainModel) {
 
+        enableOrDisableView(true, edtLogin, edtPassword, btnLogin);
+        pbLogin.setVisibility(View.GONE);
     }
 
     @Override
     public void showErrorMessage(String errorMsg) {
 
         Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+        System.out.println("errorMsg = " + errorMsg);
     }
 
     private void enableOrDisableView(boolean state, View... views) {
         for (int i = 0; i < views.length; i++) {
             views[i].setEnabled(state);
         }
-    }
-
-    private String getText(final EditText edt) {
-
-        return edt.getText().toString().trim();
     }
 }

@@ -25,9 +25,9 @@ public class LoginRepositoryImpl implements ILoginRepository {
     }
 
     @Override
-    public Flowable<LoginDomainModel> login(/*String login, String password*/) {
+    public Flowable<LoginDomainModel> login() {
 
-        return applicationApi.login(/*login, password*/).map(new MapOperator());
+        return applicationApi.login().map(new MapOperator());
     }
 
     private class MapOperator implements Function<LoginEntity, LoginDomainModel>{
