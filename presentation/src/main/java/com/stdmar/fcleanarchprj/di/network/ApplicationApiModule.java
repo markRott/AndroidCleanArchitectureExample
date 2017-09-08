@@ -20,9 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ApplicationApiModule {
 
-    public ApplicationApiModule() {
-    }
-
     @Singleton
     @Provides
     public IApplicationApi provideApplicationApi() {

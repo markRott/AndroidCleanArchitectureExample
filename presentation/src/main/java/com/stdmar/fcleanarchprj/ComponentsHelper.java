@@ -6,6 +6,7 @@ import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
 import com.stdmar.fcleanarchprj.di.login.DaggerLoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginModule;
+import com.stdmar.fcleanarchprj.di.utils.UtilsModule;
 
 /**
  * Created by sma on 06.09.17.
@@ -18,10 +19,10 @@ public class ComponentsHelper {
 
     public void initMyApplicationComponent(MyApplication myApplication) {
         if (myApplicationComponent == null) {
-            final ApplicationModule module = new ApplicationModule(myApplication);
             myApplicationComponent = DaggerMyApplicationComponent
                     .builder()
-                    .applicationModule(module)
+                    .applicationModule(getApplicationModule(myApplication))
+                    .utilsModule(getUtilsModule())
                     .build();
         }
     }
@@ -43,5 +44,13 @@ public class ComponentsHelper {
 
     public MyApplicationComponent getMyApplicationComponent() {
         return myApplicationComponent;
+    }
+
+    private UtilsModule getUtilsModule() {
+        return new UtilsModule();
+    }
+
+    private ApplicationModule getApplicationModule(MyApplication myApplication) {
+        return new ApplicationModule(myApplication);
     }
 }

@@ -34,21 +34,6 @@ public abstract class BaseUseCase<T, Params> {
     public void execute(final DisposableSubscriber<T> disposableSubscriber, final Params params) {
         final Flowable<T> responseFlowable = getResponseFlowable(params);
         addDisposable(responseFlowable.subscribeWith(disposableSubscriber));
-
-//        final Flowable<Boolean> internetState = getInternetState();
-//        internetState
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(postExecutionThread.getScheduler())
-//                .subscribe(new LocalSubscriber() {
-//                    @Override
-//                    public void onNext(Boolean hasInternet) {
-//                        if (hasInternet) {
-//                            addDisposable(responseFlowable.subscribeWith(disposableSubscriber));
-//                        } else {
-//                            disposableSubscriber.onError(new NetworkConnectionException());
-//                        }
-//                    }
-//                });
     }
 
     public void dispose() {
