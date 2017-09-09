@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.di.network;
+package com.stdmar.fcleanarchprj.di.app.modules;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.sma.data.rest.IApplicationApi;

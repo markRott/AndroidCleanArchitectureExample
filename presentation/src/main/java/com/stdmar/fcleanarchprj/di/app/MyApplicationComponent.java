@@ -6,9 +6,10 @@ import android.content.SharedPreferences;
 import com.sma.data.rest.IApplicationApi;
 import com.sma.data.utils.INetworkUtils;
 import com.stdmar.domain.IPostExecutionThread;
-import com.stdmar.fcleanarchprj.di.network.ApplicationApiModule;
-import com.stdmar.fcleanarchprj.di.schedulemainthread.ScheduleMainThreadModule;
-import com.stdmar.fcleanarchprj.di.utils.UtilsModule;
+import com.stdmar.fcleanarchprj.di.app.modules.ApplicationApiModule;
+import com.stdmar.fcleanarchprj.di.app.modules.ApplicationModule;
+import com.stdmar.fcleanarchprj.di.app.modules.ScheduleMainThreadModule;
+import com.stdmar.fcleanarchprj.di.app.modules.UtilsModule;
 import com.stdmar.fcleanarchprj.login.LoginActivity;
 import com.stdmar.fcleanarchprj.utils.image.IImageLoader;
 

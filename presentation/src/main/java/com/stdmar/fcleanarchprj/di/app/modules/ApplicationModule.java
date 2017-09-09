@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.di.app;
+package com.stdmar.fcleanarchprj.di.app.modules;
 
 import android.content.Context;
 

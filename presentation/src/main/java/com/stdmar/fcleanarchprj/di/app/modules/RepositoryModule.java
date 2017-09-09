@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.di.repository;
+package com.stdmar.fcleanarchprj.di.app.modules;
 
 import com.sma.data.entity.mapper.UserEntityDataMapper;
 import com.sma.data.repository.datasource.UserDataStoreFactory;

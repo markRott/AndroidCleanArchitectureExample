@@ -1,12 +1,12 @@
 package com.stdmar.fcleanarchprj;
 
-import com.stdmar.fcleanarchprj.di.app.ApplicationModule;
+import com.stdmar.fcleanarchprj.di.app.modules.ApplicationModule;
 import com.stdmar.fcleanarchprj.di.app.DaggerMyApplicationComponent;
 import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
 import com.stdmar.fcleanarchprj.di.login.DaggerLoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginModule;
-import com.stdmar.fcleanarchprj.di.utils.UtilsModule;
+import com.stdmar.fcleanarchprj.di.app.modules.UtilsModule;
 
 /**
  * Created by sma on 06.09.17.
