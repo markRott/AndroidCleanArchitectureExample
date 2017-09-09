@@ -26,6 +26,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginN
 
     @Override
     public void setRouter(Router router) {
+
         this.router = router;
     }
 
@@ -37,6 +38,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginN
     @Override
     public void openMainScreen() {
         router.navigateTo(Const.ScreenKey.MAIN_ACTIVITY_SCREEN);
+        router.exit();
     }
 
     public void inject() {

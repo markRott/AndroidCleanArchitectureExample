@@ -1,6 +1,8 @@
 package com.stdmar.fcleanarchprj.login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,13 +11,19 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.LoginDomainModel;
+import com.stdmar.fcleanarchprj.Const;
 import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
+import com.stdmar.fcleanarchprj.ui.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ru.terrakok.cicerone.Navigator;
+import ru.terrakok.cicerone.commands.Back;
+import ru.terrakok.cicerone.commands.Command;
+import ru.terrakok.cicerone.commands.Forward;
 
 public class LoginActivity extends BaseActivity implements ILoginView {
 
@@ -36,6 +44,18 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigatorHolder.setNavigator(navigator);
+    }
+
+    @Override
+    protected void onPause() {
+        navigatorHolder.removeNavigator();
+        super.onPause();
     }
 
     @Override
@@ -92,6 +112,39 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private void enableOrDisableView(boolean state, View... views) {
         for (int i = 0; i < views.length; i++) {
             views[i].setEnabled(state);
+        }
+    }
+
+    private Navigator navigator = new Navigator() {
+        @Override
+        public void applyCommand(Command command) {
+            if (command instanceof Forward) {
+                forward((Forward) command);
+            } else if (command instanceof Back) {
+                back();
+            } else {
+                Log.e("Cicerone", "Illegal command for this screen: "
+                        + command.getClass().getSimpleName());
+            }
+        }
+    };
+
+    private void back() {
+
+        finish();
+    }
+
+    private void forward(Forward command) {
+        switch (command.getScreenKey()) {
+            case Const.ScreenKey.MAIN_ACTIVITY_SCREEN:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case Const.ScreenKey.SIGNUP_ACTIVITY_SCREEN:
+//                startActivity(new Intent(this, MainActivity.class));
+                break;
+            default:
+                Log.e("Cicerone", "Unknown screen: " + command.getScreenKey());
+                break;
         }
     }
 }

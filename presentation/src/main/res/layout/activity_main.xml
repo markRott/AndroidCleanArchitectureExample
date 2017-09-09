@@ -7,19 +7,10 @@
     android:orientation="vertical"
     tools:context="com.stdmar.fcleanarchprj.ui.MainActivity">
 
-    <Button
-        android:id="@+id/btn_load_users"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Load users"
-        android:textAllCaps="false" />
 
-    <TextView
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:id="@+id/tv_load_label"
+    <FrameLayout
+        android:id="@+id/frm_main_container"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

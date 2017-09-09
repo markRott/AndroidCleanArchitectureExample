@@ -1,12 +1,11 @@
-package com.stdmar.fcleanarchprj.di.app.modules;
+package com.stdmar.fcleanarchprj.di.users.modules;
 
 import com.sma.data.entity.mapper.UserEntityDataMapper;
+import com.sma.data.repository.UserRepositoryImpl;
 import com.sma.data.repository.datasource.UserDataStoreFactory;
 import com.sma.data.rest.IApplicationApi;
-import com.sma.data.repository.UserRepositoryImpl;
 import com.stdmar.domain.IRepository;
-
-import javax.inject.Singleton;
+import com.stdmar.fcleanarchprj.di.users.UsersListScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,31 +17,27 @@ import dagger.Provides;
 @Module
 public class RepositoryModule {
 
-    public RepositoryModule() {
-    }
-
-    @Singleton
     @Provides
-    public IRepository provideRepository(
-            IApplicationApi applicationApi,
-            UserDataStoreFactory factory,
-            UserEntityDataMapper mapper) {
-
-        return new UserRepositoryImpl(factory, mapper);
-    }
-
-    @Singleton
-    @Provides
+    @UsersListScope
     public UserDataStoreFactory provideUserDataStoreFactory(IApplicationApi applicationApi) {
 
         return new UserDataStoreFactory(applicationApi);
     }
 
-    @Singleton
     @Provides
+    @UsersListScope
     public UserEntityDataMapper provideUserEntityDataMapper() {
 
         return new UserEntityDataMapper();
+    }
+
+    @Provides
+    @UsersListScope
+    public IRepository provideRepository(
+            UserDataStoreFactory factory,
+            UserEntityDataMapper mapper) {
+
+        return new UserRepositoryImpl(factory, mapper);
     }
 
 }

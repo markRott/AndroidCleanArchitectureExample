@@ -1,10 +1,9 @@
-package com.stdmar.fcleanarchprj.di.usecase;
+package com.stdmar.fcleanarchprj.di.users.modules;
 
-import com.stdmar.domain.IRepository;
 import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.IRepository;
 import com.stdmar.domain.interactors.user.UsersUseCase;
-
-import javax.inject.Singleton;
+import com.stdmar.fcleanarchprj.di.users.UsersListScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,16 +15,12 @@ import dagger.Provides;
 @Module
 public class UsersUseCaseModule {
 
-    public UsersUseCaseModule() {
-    }
-
     @Provides
-    @Singleton
+    @UsersListScope
     public UsersUseCase provideUsersUseCase(
             IPostExecutionThread thread,
             IRepository repository) {
 
         return new UsersUseCase(thread, repository);
     }
-
 }

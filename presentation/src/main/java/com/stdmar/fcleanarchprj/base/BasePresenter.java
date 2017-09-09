@@ -13,4 +13,6 @@ public abstract class BasePresenter<View extends MvpView> extends MvpPresenter<V
 
     public abstract void setRouter(Router router);
 
+    public abstract void inject();
+
 }

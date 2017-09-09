@@ -9,6 +9,10 @@ import com.stdmar.fcleanarchprj.di.login.DaggerLoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginModule;
 import com.stdmar.fcleanarchprj.di.app.modules.UtilsModule;
+import com.stdmar.fcleanarchprj.di.users.DaggerUsersListComponent;
+import com.stdmar.fcleanarchprj.di.users.UsersListComponent;
+import com.stdmar.fcleanarchprj.di.users.modules.RepositoryModule;
+import com.stdmar.fcleanarchprj.di.users.modules.UsersUseCaseModule;
 
 /**
  * Created by sma on 06.09.17.
@@ -17,6 +21,7 @@ import com.stdmar.fcleanarchprj.di.app.modules.UtilsModule;
 public class ComponentsHelper {
 
     private LoginComponent loginComponent;
+    private UsersListComponent usersListComponent;
     private MyApplicationComponent myApplicationComponent;
 
     public void initMyApplicationComponent(MyApplication myApplication) {
@@ -40,14 +45,27 @@ public class ComponentsHelper {
         }
     }
 
-    public LoginComponent getLoginComponent() {
-
-        return loginComponent;
+    public void initUsersListComponent() {
+        if (usersListComponent == null) {
+            usersListComponent = DaggerUsersListComponent
+                    .builder()
+                    .myApplicationComponent(myApplicationComponent)
+                    .usersUseCaseModule(new UsersUseCaseModule())
+                    .repositoryModule(new RepositoryModule())
+                    .build();
+        }
     }
 
     public MyApplicationComponent getMyApplicationComponent() {
-
         return myApplicationComponent;
+    }
+
+    public LoginComponent getLoginComponent() {
+        return loginComponent;
+    }
+
+    public UsersListComponent getUsersListComponent() {
+        return usersListComponent;
     }
 
     private UtilsModule getUtilsModule() {

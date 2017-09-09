@@ -1,56 +1,111 @@
 package com.stdmar.fcleanarchprj.ui;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
-import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.stdmar.fcleanarchprj.Const;
+import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
-import com.stdmar.fcleanarchprj.presenters.UsersPresenter;
-import com.stdmar.fcleanarchprj.viewsinterface.ILoadUsers;
+import com.stdmar.fcleanarchprj.detailuser.DetailUserFragment;
+import com.stdmar.fcleanarchprj.userlist.IBackButtonListener;
+import com.stdmar.fcleanarchprj.userlist.UsersFragment;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import ru.terrakok.cicerone.Navigator;
+import ru.terrakok.cicerone.android.SupportFragmentNavigator;
+import ru.terrakok.cicerone.commands.Back;
+import ru.terrakok.cicerone.commands.BackTo;
+import ru.terrakok.cicerone.commands.Command;
+import ru.terrakok.cicerone.commands.Forward;
+import ru.terrakok.cicerone.commands.Replace;
 
-public class MainActivity extends BaseActivity implements ILoadUsers {
-
-    @BindView(R.id.tv_load_label)
-    TextView tvLoadLabel;
-
-    @InjectPresenter
-    UsersPresenter usersPresenter;
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
+
+        navigator.applyCommand(new Replace(Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN, null));
     }
 
     @Override
     protected void inject() {
 
-    }
-
-    @OnClick(R.id.btn_load_users)
-    public void clickOnLoadUsers(View view) {
-
-        if (usersPresenter == null) return;
-        usersPresenter.fetchUsers();
+        MyApplication.COMPONENTS_HELPER.getMyApplicationComponent().inject(this);
     }
 
     @Override
-    public void showLoadLabel() {
-
-        tvLoadLabel.setText(R.string.msg_loading);
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        navigatorHolder.setNavigator(navigator);
     }
 
     @Override
-    public void hideLoadLabel() {
+    protected void onPause() {
+        navigatorHolder.removeNavigator();
+        super.onPause();
+    }
 
-        tvLoadLabel.setText(R.string.msg_success);
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frm_main_container);
+        if (fragment != null && fragment instanceof IBackButtonListener
+                && ((IBackButtonListener) fragment).onBackPressed()) {
+            //
+            return;
+
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private Navigator navigator = new
+            SupportFragmentNavigator(getSupportFragmentManager(), R.id.frm_main_container) {
+
+                @Override
+                protected Fragment createFragment(String screenKey, Object data) {
+                    return getFragmentByKey(screenKey);
+                }
+
+                @Override
+                protected void showSystemMessage(String message) {
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                protected void exit() {
+
+                    finish();
+                }
+
+                @Override
+                public void applyCommand(Command command) {
+                    super.applyCommand(command);
+                    updateScreenNames(command);
+                }
+            };
+
+    private void updateScreenNames(Command command) {
+        if (command instanceof Back) {
+        } else if (command instanceof Forward) {
+
+        } else if (command instanceof Replace) {
+        } else if (command instanceof BackTo) {
+        }
+    }
+
+    private Fragment getFragmentByKey(final String key) {
+        switch (key) {
+            case Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN:
+                return UsersFragment.newInstance();
+            case Const.ScreenKey.DETAIL_USER_FRAGMENT_SCREEN:
+                return DetailUserFragment.newInstance();
+            default:
+                return null;
+        }
     }
 }

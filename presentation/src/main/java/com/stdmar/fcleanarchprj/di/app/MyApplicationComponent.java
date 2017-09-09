@@ -12,6 +12,7 @@ import com.stdmar.fcleanarchprj.di.app.modules.NavigationModule;
 import com.stdmar.fcleanarchprj.di.app.modules.ScheduleMainThreadModule;
 import com.stdmar.fcleanarchprj.di.app.modules.UtilsModule;
 import com.stdmar.fcleanarchprj.login.LoginActivity;
+import com.stdmar.fcleanarchprj.ui.MainActivity;
 import com.stdmar.fcleanarchprj.utils.image.IImageLoader;
 
 import javax.inject.Singleton;
@@ -35,6 +36,8 @@ import ru.terrakok.cicerone.Router;
 public interface MyApplicationComponent {
 
     void inject(LoginActivity loginActivity);
+
+    void inject(MainActivity mainActivity);
 
     Context context();
 
