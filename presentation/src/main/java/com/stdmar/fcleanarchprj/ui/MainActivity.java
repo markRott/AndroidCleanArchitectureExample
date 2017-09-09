@@ -33,7 +33,6 @@ public class MainActivity extends BaseActivity implements ILoadUsers {
     @Override
     protected void inject() {
 
-//        MyApplication.getComponentsHelper().getApplicationComponent().inject(this);
     }
 
     @OnClick(R.id.btn_load_users)

@@ -12,6 +12,8 @@ import com.stdmar.fcleanarchprj.utils.image.IImageLoader;
 
 import javax.inject.Inject;
 
+import ru.terrakok.cicerone.Router;
+
 /**
  * Created by sma on 07.09.17.
  */
@@ -26,15 +28,30 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     @Inject
     SharedPreferences sharedPreferences;
 
-    public void inject() {
+    private Router router;
 
-        MyApplication.getComponentsHelper().getLoginComponent().injectToLoginPresenter(this);
+    public LoginPresenter() {
+        router = MyApplication.INSTANCE.getRouter();
+    }
+
+    public void inject() {
+        MyApplication.INSTANCE.getLoginComponent().injectToLoginPresenter(this);
     }
 
     public void runLoginUseCase() {
         if (loginUseCase == null) return;
         actionWithViewBeforeLogin();
         loginUseCase.execute(new LoginFlowable(), null);
+    }
+
+    public void onBackCommandClick() {
+
+        router.exit();
+    }
+
+    public void onForwardCommandClick() {
+
+        router.navigateTo("MainActivity");
     }
 
     private void actionWithViewBeforeLogin() {

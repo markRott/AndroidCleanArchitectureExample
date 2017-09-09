@@ -41,6 +41,7 @@ allprojects {
         moxyCompiler = "1.5.3"
         moxyAppCompat = "1.5.3"
         picasso = "2.5.2"
+        cicerone = "2.1.0"
     }
 
 }

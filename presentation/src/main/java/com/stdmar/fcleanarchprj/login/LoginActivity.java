@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     protected void inject() {
 
-        MyApplication.getComponentsHelper().initLoginComponent();
+        MyApplication.INSTANCE.getComponentsHelper().initLoginComponent();
         loginPresenter.inject();
     }
 

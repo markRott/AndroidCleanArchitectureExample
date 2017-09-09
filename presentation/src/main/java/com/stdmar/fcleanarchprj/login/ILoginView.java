@@ -1,7 +1,7 @@
 package com.stdmar.fcleanarchprj.login;
 
 import com.arellomobile.mvp.MvpView;
-import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
+import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.stdmar.domain.models.LoginDomainModel;
 
@@ -21,7 +21,7 @@ public interface ILoginView extends MvpView {
 
     void successLogin(LoginDomainModel loginDomainModel);
 
-    @StateStrategyType(value = SkipStrategy.class)
+    @StateStrategyType(value = OneExecutionStateStrategy.class)
     void showErrorMessage(String errorMsg);
 
 }
