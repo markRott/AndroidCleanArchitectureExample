@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj;
+package com.stdmar.fcleanarchprj.utils;
 
 import com.stdmar.domain.IPostExecutionThread;
 

@@ -40,9 +40,15 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     protected void inject() {
-
-        MyApplication.INSTANCE.getComponentsHelper().initLoginComponent();
+        MyApplication.COMPONENTS_HELPER.getMyApplicationComponent().inject(this);
+        MyApplication.COMPONENTS_HELPER.initLoginComponent();
         loginPresenter.inject();
+        loginPresenter.setRouter(router);
+    }
+
+    @Override
+    public void onBackPressed() {
+        loginPresenter.onBackPressed();
     }
 
     @OnClick(R.id.btn_login)
@@ -53,38 +59,32 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void showProgressBar() {
-
         pbLogin.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
         pbLogin.setVisibility(View.GONE);
     }
 
     @Override
     public void disableViews() {
-
         enableOrDisableView(false, edtLogin, edtPassword, btnLogin);
     }
 
     @Override
     public void enableViews() {
-
         enableOrDisableView(true, edtLogin, edtPassword, btnLogin);
     }
 
     @Override
     public void successLogin(LoginDomainModel loginDomainModel) {
-
         enableOrDisableView(true, edtLogin, edtPassword, btnLogin);
         pbLogin.setVisibility(View.GONE);
     }
 
     @Override
     public void showErrorMessage(String errorMsg) {
-
         Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
         System.out.println("errorMsg = " + errorMsg);
     }

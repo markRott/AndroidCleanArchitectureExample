@@ -8,6 +8,7 @@ import com.sma.data.utils.INetworkUtils;
 import com.stdmar.domain.IPostExecutionThread;
 import com.stdmar.fcleanarchprj.di.app.modules.ApplicationApiModule;
 import com.stdmar.fcleanarchprj.di.app.modules.ApplicationModule;
+import com.stdmar.fcleanarchprj.di.app.modules.NavigationModule;
 import com.stdmar.fcleanarchprj.di.app.modules.ScheduleMainThreadModule;
 import com.stdmar.fcleanarchprj.di.app.modules.UtilsModule;
 import com.stdmar.fcleanarchprj.login.LoginActivity;
@@ -16,6 +17,8 @@ import com.stdmar.fcleanarchprj.utils.image.IImageLoader;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import ru.terrakok.cicerone.NavigatorHolder;
+import ru.terrakok.cicerone.Router;
 
 /**
  * Created by sma on 07.09.17.
@@ -27,6 +30,7 @@ import dagger.Component;
         ApplicationApiModule.class,
         ScheduleMainThreadModule.class,
         UtilsModule.class,
+        NavigationModule.class
 })
 public interface MyApplicationComponent {
 
@@ -43,4 +47,8 @@ public interface MyApplicationComponent {
     IImageLoader imageLoader();
 
     SharedPreferences sharedPreferences();
+
+    Router router();
+
+    NavigatorHolder navigatorHolder();
 }

@@ -2,7 +2,7 @@ package com.stdmar.fcleanarchprj;
 
 import android.app.Application;
 
-import com.stdmar.fcleanarchprj.di.login.LoginComponent;
+import com.stdmar.fcleanarchprj.di.ComponentsHelper;
 
 /**
  * Created by sma on 06.09.17.
@@ -11,7 +11,7 @@ import com.stdmar.fcleanarchprj.di.login.LoginComponent;
 public class MyApplication extends Application {
 
     public static MyApplication INSTANCE;
-    private ComponentsHelper componentsHelper;
+    public static ComponentsHelper COMPONENTS_HELPER;
 
     @Override
     public void onCreate() {
@@ -20,18 +20,8 @@ public class MyApplication extends Application {
         initComponentsHelper();
     }
 
-    public ComponentsHelper getComponentsHelper() {
-
-        return componentsHelper;
-    }
-
-    public LoginComponent getLoginComponent() {
-
-        return componentsHelper.getLoginComponent();
-    }
-
     private void initComponentsHelper() {
-        componentsHelper = new ComponentsHelper();
-        componentsHelper.initMyApplicationComponent(this);
+        COMPONENTS_HELPER = new ComponentsHelper();
+        COMPONENTS_HELPER.initMyApplicationComponent(this);
     }
 }

@@ -1,8 +1,10 @@
-package com.stdmar.fcleanarchprj;
+package com.stdmar.fcleanarchprj.di;
 
+import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.di.app.modules.ApplicationModule;
 import com.stdmar.fcleanarchprj.di.app.DaggerMyApplicationComponent;
 import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
+import com.stdmar.fcleanarchprj.di.app.modules.NavigationModule;
 import com.stdmar.fcleanarchprj.di.login.DaggerLoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginComponent;
 import com.stdmar.fcleanarchprj.di.login.LoginModule;
@@ -23,6 +25,7 @@ public class ComponentsHelper {
                     .builder()
                     .applicationModule(getApplicationModule(myApplication))
                     .utilsModule(getUtilsModule())
+                    .navigationModule(new NavigationModule())
                     .build();
         }
     }
@@ -43,6 +46,7 @@ public class ComponentsHelper {
     }
 
     public MyApplicationComponent getMyApplicationComponent() {
+
         return myApplicationComponent;
     }
 

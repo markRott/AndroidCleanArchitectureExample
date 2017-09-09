@@ -1,36 +1,47 @@
 package com.stdmar.fcleanarchprj.login;
 
-import android.content.SharedPreferences;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.stdmar.domain.interactors.login.LoginUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
+import com.stdmar.fcleanarchprj.Const;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
 import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.base.BasePresenter;
-import com.stdmar.fcleanarchprj.utils.image.IImageLoader;
 
 import javax.inject.Inject;
+
+import ru.terrakok.cicerone.Router;
 
 /**
  * Created by sma on 07.09.17.
  */
 
 @InjectViewState
-public class LoginPresenter extends BasePresenter<ILoginView> {
+public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginNavigationCommands {
 
     @Inject
     LoginUseCase loginUseCase;
-    @Inject
-    IImageLoader imageLoader;
-    @Inject
-    SharedPreferences sharedPreferences;
 
-    public LoginPresenter() {
+    private Router router;
+
+    @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public void onBackPressed() {
+        router.exit();
+    }
+
+    @Override
+    public void openMainScreen() {
+        router.navigateTo(Const.ScreenKey.MAIN_ACTIVITY_SCREEN);
     }
 
     public void inject() {
-        MyApplication.INSTANCE.getLoginComponent().injectToLoginPresenter(this);
+
+        MyApplication.COMPONENTS_HELPER.getLoginComponent().injectToLoginPresenter(this);
     }
 
     public void runLoginUseCase() {
@@ -45,14 +56,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     }
 
     private void loginSuccessState(final LoginDomainModel loginDomainModel) {
-
         getViewState().successLogin(loginDomainModel);
-    }
-
-    private void loginCompleteState() {
-
-        getViewState().enableViews();
-        getViewState().hideProgressBar();
     }
 
     private void loginErrorState(String errorMsg) {
@@ -66,6 +70,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         @Override
         public void onNext(LoginDomainModel loginDomainModel) {
             loginSuccessState(loginDomainModel);
+            openMainScreen();
             System.out.println("loginDomainModel = " + loginDomainModel);
         }
 
@@ -73,12 +78,6 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         public void onError(Throwable t) {
             getViewState().enableViews();
             loginErrorState(t.getMessage());
-        }
-
-        @Override
-        public void onComplete() {
-
-            loginCompleteState();
         }
     }
 
