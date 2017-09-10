@@ -13,13 +13,18 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.UserDomainModel;
 import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
+import com.stdmar.fcleanarchprj.base.BaseDividerItemDecoration;
 import com.stdmar.fcleanarchprj.base.BaseFragment;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.stdmar.fcleanarchprj.base.BaseDividerItemDecoration.VERTICAL_LIST;
 
 /**
  * Created by sma on 09.09.17.
@@ -27,13 +32,15 @@ import butterknife.OnClick;
 
 public class UsersFragment extends BaseFragment implements ILoadUsersView, IBackButtonListener {
 
-    @InjectPresenter
-    UsersPresenter usersPresenter;
-
     @BindView(R.id.pb_load_users)
     ProgressBar pbLoadUsers;
     @BindView(R.id.rcv_users)
     RecyclerView rcvUsers;
+
+    @Inject
+    UsersAdapter usersAdapter;
+    @InjectPresenter
+    UsersPresenter usersPresenter;
 
     public static UsersFragment newInstance() {
         return new UsersFragment();
@@ -42,6 +49,7 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
     @Override
     protected void inject() {
         MyApplication.COMPONENTS_HELPER.initUsersListComponent();
+        MyApplication.COMPONENTS_HELPER.getUsersListComponent().injectInUsersFragment(this);
         usersPresenter.inject();
     }
 
@@ -92,7 +100,9 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
 
     @Override
     public void renderUsersList(List<UserDomainModel> userDomainModelList) {
-
+        if (userDomainModelList == null || userDomainModelList.isEmpty()) return;
+        usersAdapter.setData(userDomainModelList);
+        System.out.println("renderUsersList");
     }
 
     @OnClick(R.id.btn_stub_detail)
@@ -102,6 +112,7 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
 
     private void setupRecyclerView() {
         rcvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
-//        this.rv_users.setAdapter(usersAdapter);
+        rcvUsers.addItemDecoration(new BaseDividerItemDecoration(getContext(), VERTICAL_LIST));
+        rcvUsers.setAdapter(usersAdapter);
     }
 }

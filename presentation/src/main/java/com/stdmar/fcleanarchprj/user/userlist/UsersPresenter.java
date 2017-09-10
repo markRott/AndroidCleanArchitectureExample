@@ -59,7 +59,6 @@ public class UsersPresenter extends BasePresenter<ILoadUsersView> {
     private final class UsersObserver extends CustomDisposableSubscriber<List<UserDomainModel>> {
         @Override
         public void onNext(List<UserDomainModel> userDomainModelList) {
-            System.out.println("userDomainModelList = " + userDomainModelList);
             getViewState().hideProgressBar();
             getViewState().renderUsersList(userDomainModelList);
         }
