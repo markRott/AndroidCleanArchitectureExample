@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Users list"
-        android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:text="Stub"
-        android:id="@+id/btn_stub_detail"
-        android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Users list"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_users"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_stub_detail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Stub" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/pb_load_users"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

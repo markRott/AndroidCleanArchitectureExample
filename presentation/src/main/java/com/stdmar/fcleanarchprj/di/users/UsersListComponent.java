@@ -7,7 +7,7 @@ import com.stdmar.domain.interactors.user.UsersUseCase;
 import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
 import com.stdmar.fcleanarchprj.di.users.modules.RepositoryModule;
 import com.stdmar.fcleanarchprj.di.users.modules.UsersUseCaseModule;
-import com.stdmar.fcleanarchprj.userlist.UsersPresenter;
+import com.stdmar.fcleanarchprj.user.userlist.UsersPresenter;
 
 import dagger.Component;
 

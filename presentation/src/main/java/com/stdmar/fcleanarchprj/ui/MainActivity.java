@@ -8,9 +8,9 @@ import com.stdmar.fcleanarchprj.Const;
 import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
-import com.stdmar.fcleanarchprj.detailuser.DetailUserFragment;
-import com.stdmar.fcleanarchprj.userlist.IBackButtonListener;
-import com.stdmar.fcleanarchprj.userlist.UsersFragment;
+import com.stdmar.fcleanarchprj.user.detailuser.DetailUserFragment;
+import com.stdmar.fcleanarchprj.user.userlist.IBackButtonListener;
+import com.stdmar.fcleanarchprj.user.userlist.UsersFragment;
 
 import butterknife.ButterKnife;
 import ru.terrakok.cicerone.Navigator;
@@ -29,7 +29,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        navigator.applyCommand(new Replace(Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN, null));
+        if(savedInstanceState == null){
+            navigator.applyCommand(new Replace(Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN, null));
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.detailuser;
+package com.stdmar.fcleanarchprj.user.detailuser;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

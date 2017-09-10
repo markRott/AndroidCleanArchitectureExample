@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.userlist;
+package com.stdmar.fcleanarchprj.user.userlist;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.stdmar.domain.interactors.user.UsersUseCase;
@@ -22,9 +22,9 @@ import ru.terrakok.cicerone.Router;
 public class UsersPresenter extends BasePresenter<ILoadUsersView> {
 
     @Inject
-    UsersUseCase usersUseCase;
-    @Inject
     Router router;
+    @Inject
+    UsersUseCase usersUseCase;
 
     @Override
     public void setRouter(Router router) {
@@ -33,13 +33,18 @@ public class UsersPresenter extends BasePresenter<ILoadUsersView> {
 
     @Override
     public void inject() {
-
         MyApplication.COMPONENTS_HELPER.getUsersListComponent().injectInUsersPresenter(this);
+    }
+
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        fetchUsers();
     }
 
     public void fetchUsers() {
         if (usersUseCase == null) return;
-        getViewState().showLoadLabel();
+        getViewState().showProgressBar();
         usersUseCase.execute(new UsersObserver(), null);
     }
 
@@ -47,21 +52,21 @@ public class UsersPresenter extends BasePresenter<ILoadUsersView> {
         router.exit();
     }
 
-    public void onOpenDetailScreen(){
+    public void onOpenDetailScreen() {
         router.navigateTo(Const.ScreenKey.DETAIL_USER_FRAGMENT_SCREEN);
     }
 
     private final class UsersObserver extends CustomDisposableSubscriber<List<UserDomainModel>> {
-
         @Override
         public void onNext(List<UserDomainModel> userDomainModelList) {
             System.out.println("userDomainModelList = " + userDomainModelList);
+            getViewState().hideProgressBar();
+            getViewState().renderUsersList(userDomainModelList);
         }
 
         @Override
         public void onError(Throwable t) {
-            System.out.println("Throwable = " + t);
-            UsersPresenter.this.getViewState().hideLoadLabel();
+            getViewState().hideProgressBar();
         }
     }
 
