@@ -1,18 +1,19 @@
-package com.stdmar.fcleanarchprj.di.users;
+package com.stdmar.fcleanarchprj.di.users.list;
 
 import com.sma.data.entity.mapper.UserEntityDataMapper;
 import com.sma.data.repository.datasource.UserDataStoreFactory;
-import com.stdmar.domain.IRepository;
 import com.stdmar.domain.interactors.user.UsersUseCase;
+import com.stdmar.domain.interfaces.IUserRepository;
 import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
-import com.stdmar.fcleanarchprj.di.users.modules.RepositoryModule;
-import com.stdmar.fcleanarchprj.di.users.modules.UsersAdapterModule;
-import com.stdmar.fcleanarchprj.di.users.modules.UsersUseCaseModule;
+import com.stdmar.fcleanarchprj.di.customqualifier.UsersListQualifier;
+import com.stdmar.fcleanarchprj.di.users.list.modules.RepositoryModule;
+import com.stdmar.fcleanarchprj.di.users.list.modules.UsersAdapterModule;
+import com.stdmar.fcleanarchprj.di.users.list.modules.UsersUseCaseModule;
 import com.stdmar.fcleanarchprj.user.userlist.UsersAdapter;
 import com.stdmar.fcleanarchprj.user.userlist.UsersFragment;
-import com.stdmar.fcleanarchprj.user.userlist.UsersPresenter;
 
 import dagger.Component;
+import ru.terrakok.cicerone.Router;
 
 /**
  * Created by sma on 09.09.17.
@@ -27,17 +28,18 @@ import dagger.Component;
 @UsersListScope
 public interface UsersListComponent {
 
-    void injectInUsersPresenter(UsersPresenter usersPresenter);
-
     void injectInUsersFragment(UsersFragment usersFragment);
 
     UsersUseCase usersUseCase();
 
     UserDataStoreFactory userDataStoreFactory();
 
+    @UsersListQualifier
     UserEntityDataMapper userEntityDataMapper();
 
-    IRepository repository();
+    IUserRepository repository();
 
     UsersAdapter usersAdapter();
+
+    Router router();
 }

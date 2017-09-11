@@ -1,6 +1,6 @@
 package com.stdmar.fcleanarchprj.di.app.modules;
 
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 import com.stdmar.fcleanarchprj.utils.UiThreadImpl;
 
 import javax.inject.Singleton;

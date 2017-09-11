@@ -4,9 +4,24 @@ package com.stdmar.fcleanarchprj;
  * Created by sma on 09.09.17.
  */
 
-public class Const {
+public final class Const {
 
-    public class ScreenKey {
+    private Const() {
+    }
+
+    public final class ArgKey {
+
+        private ArgKey() {
+        }
+
+        public static final String DETAIL_USER_ID = "DETAIL_USER_ID";
+
+    }
+
+    public final class ScreenKey {
+
+        private ScreenKey() {
+        }
 
         // ACTIVITIES
         public static final String MAIN_ACTIVITY_SCREEN = "MAIN_ACTIVITY_SCREEN";

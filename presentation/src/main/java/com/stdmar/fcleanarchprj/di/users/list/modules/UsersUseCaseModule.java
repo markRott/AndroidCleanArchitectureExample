@@ -1,9 +1,9 @@
-package com.stdmar.fcleanarchprj.di.users.modules;
+package com.stdmar.fcleanarchprj.di.users.list.modules;
 
-import com.stdmar.domain.IPostExecutionThread;
-import com.stdmar.domain.IRepository;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
+import com.stdmar.domain.interfaces.IUserRepository;
 import com.stdmar.domain.interactors.user.UsersUseCase;
-import com.stdmar.fcleanarchprj.di.users.UsersListScope;
+import com.stdmar.fcleanarchprj.di.users.list.UsersListScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,7 +19,7 @@ public class UsersUseCaseModule {
     @UsersListScope
     public UsersUseCase provideUsersUseCase(
             IPostExecutionThread thread,
-            IRepository repository) {
+            IUserRepository repository) {
 
         return new UsersUseCase(thread, repository);
     }

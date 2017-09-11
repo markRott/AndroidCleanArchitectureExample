@@ -1,7 +1,7 @@
 package com.stdmar.domain.interactors.user;
 
-import com.stdmar.domain.IRepository;
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.IUserRepository;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 import com.stdmar.domain.interactors.BaseUseCase;
 import com.stdmar.domain.models.UserDomainModel;
 
@@ -15,10 +15,9 @@ import io.reactivex.Flowable;
 
 public class UsersUseCase extends BaseUseCase<List<UserDomainModel>, Void> {
 
-    private IRepository repository;
+    private IUserRepository repository;
 
-    public UsersUseCase(IPostExecutionThread thread, IRepository repository) {
-
+    public UsersUseCase(IPostExecutionThread thread, IUserRepository repository) {
         super(thread);
         this.repository = repository;
     }

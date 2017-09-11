@@ -4,7 +4,7 @@ import com.sma.data.entity.UserEntity;
 import com.sma.data.entity.mapper.UserEntityDataMapper;
 import com.sma.data.repository.datasource.IUserDataStore;
 import com.sma.data.repository.datasource.UserDataStoreFactory;
-import com.stdmar.domain.IRepository;
+import com.stdmar.domain.interfaces.IUserRepository;
 import com.stdmar.domain.models.UserDomainModel;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import io.reactivex.functions.Function;
  * Created by sma on 05.09.17.
  */
 
-public class UserRepositoryImpl implements IRepository {
+public class UserRepositoryImpl implements IUserRepository {
 
     private UserDataStoreFactory userDataStoreFactory;
     private UserEntityDataMapper userEntityDataMapper;

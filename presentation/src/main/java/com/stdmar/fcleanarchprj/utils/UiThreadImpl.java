@@ -1,6 +1,6 @@
 package com.stdmar.fcleanarchprj.utils;
 
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;

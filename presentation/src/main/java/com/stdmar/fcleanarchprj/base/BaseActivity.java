@@ -2,11 +2,10 @@ package com.stdmar.fcleanarchprj.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.stdmar.fcleanarchprj.MyApplication;
+import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
 
 import javax.inject.Inject;
 
@@ -29,7 +28,6 @@ public class BaseActivity extends MvpAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         inject();
     }
 
@@ -37,9 +35,8 @@ public class BaseActivity extends MvpAppCompatActivity {
 
     }
 
-    public void replaceFragment(int containerViewId, Fragment fragment) {
-        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(containerViewId, fragment);
-        ft.commit();
+    public MyApplicationComponent getMyApplicationComponent() {
+
+        return ((MyApplication) getApplication()).getMyApplicationComponent();
     }
 }

@@ -3,8 +3,8 @@ package com.stdmar.fcleanarchprj.di.login;
 import com.sma.data.entity.mapper.LoginEntityDataMapper;
 import com.sma.data.repository.LoginRepositoryImpl;
 import com.sma.data.rest.IApplicationApi;
-import com.stdmar.domain.ILoginRepository;
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.ILoginRepository;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 import com.stdmar.domain.interactors.login.LoginUseCase;
 
 import dagger.Module;

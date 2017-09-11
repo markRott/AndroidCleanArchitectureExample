@@ -5,10 +5,7 @@ import com.stdmar.domain.interactors.login.LoginUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
 import com.stdmar.fcleanarchprj.Const;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.base.BasePresenter;
-
-import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Router;
 
@@ -19,16 +16,8 @@ import ru.terrakok.cicerone.Router;
 @InjectViewState
 public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginNavigationCommands {
 
-    @Inject
+    Router router;
     LoginUseCase loginUseCase;
-
-    private Router router;
-
-    @Override
-    public void setRouter(Router router) {
-
-        this.router = router;
-    }
 
     @Override
     public void onBackPressed() {
@@ -41,15 +30,20 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginN
         router.exit();
     }
 
-    public void inject() {
-
-        MyApplication.COMPONENTS_HELPER.getLoginComponent().injectToLoginPresenter(this);
-    }
-
-    public void runLoginUseCase() {
+    public void runLoginRequest() {
         if (loginUseCase == null) return;
         actionWithViewBeforeLogin();
         loginUseCase.execute(new LoginFlowable(), null);
+    }
+
+    public LoginPresenter setRouter(Router router) {
+        this.router = router;
+        return this;
+    }
+
+    public LoginPresenter setLoginUseCase(LoginUseCase loginUseCase) {
+        this.loginUseCase = loginUseCase;
+        return this;
     }
 
     private void actionWithViewBeforeLogin() {

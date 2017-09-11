@@ -30,6 +30,7 @@ public class UsersAdapter extends BaseRecyclerAdapter<UserDomainModel, UsersAdap
     @Override
     public void onBindViewHolder(UsersAdapterHolder holder, int position) {
         final UserDomainModel item = getItemByPosition(position);
+
         setupItemTouchListener(holder.rootView, position, item);
         holder.tvUserName.setText(item.getFullName());
     }

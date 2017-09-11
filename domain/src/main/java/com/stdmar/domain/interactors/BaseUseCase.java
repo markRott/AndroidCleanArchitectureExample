@@ -1,6 +1,6 @@
 package com.stdmar.domain.interactors;
 
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

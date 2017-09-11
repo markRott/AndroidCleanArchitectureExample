@@ -27,6 +27,7 @@ public abstract class BaseRecyclerAdapter<Item, Holder extends RecyclerView.View
     }
 
     public void setItemTouchListener(IRecyclerItemTouchListener<Item> itemTouchListener) {
+
         this.itemTouchListener = itemTouchListener;
     }
 

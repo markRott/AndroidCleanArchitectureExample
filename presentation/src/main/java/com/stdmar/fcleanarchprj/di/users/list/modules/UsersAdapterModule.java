@@ -1,8 +1,8 @@
-package com.stdmar.fcleanarchprj.di.users.modules;
+package com.stdmar.fcleanarchprj.di.users.list.modules;
 
 import android.content.Context;
 
-import com.stdmar.fcleanarchprj.di.users.UsersListScope;
+import com.stdmar.fcleanarchprj.di.users.list.UsersListScope;
 import com.stdmar.fcleanarchprj.user.userlist.UsersAdapter;
 
 import dagger.Module;

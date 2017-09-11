@@ -1,4 +1,4 @@
-package com.stdmar.domain;
+package com.stdmar.domain.interfaces;
 
 import io.reactivex.Scheduler;
 

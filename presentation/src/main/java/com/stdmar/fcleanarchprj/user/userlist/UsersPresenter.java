@@ -5,12 +5,9 @@ import com.stdmar.domain.interactors.user.UsersUseCase;
 import com.stdmar.domain.models.UserDomainModel;
 import com.stdmar.fcleanarchprj.Const;
 import com.stdmar.fcleanarchprj.CustomDisposableSubscriber;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.base.BasePresenter;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import ru.terrakok.cicerone.Router;
 
@@ -21,25 +18,28 @@ import ru.terrakok.cicerone.Router;
 @InjectViewState
 public class UsersPresenter extends BasePresenter<ILoadUsersView> {
 
-    @Inject
     Router router;
-    @Inject
     UsersUseCase usersUseCase;
-
-    @Override
-    public void setRouter(Router router) {
-
-    }
-
-    @Override
-    public void inject() {
-        MyApplication.COMPONENTS_HELPER.getUsersListComponent().injectInUsersPresenter(this);
-    }
 
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         fetchUsers();
+    }
+
+    @Override
+    public void attachView(ILoadUsersView view) {
+        super.attachView(view);
+    }
+
+    @Override
+    public void detachView(ILoadUsersView view) {
+        super.detachView(view);
+    }
+
+    @Override
+    public void destroyView(ILoadUsersView view) {
+        super.destroyView(view);
     }
 
     public void fetchUsers() {
@@ -52,8 +52,19 @@ public class UsersPresenter extends BasePresenter<ILoadUsersView> {
         router.exit();
     }
 
-    public void onOpenDetailScreen() {
-        router.navigateTo(Const.ScreenKey.DETAIL_USER_FRAGMENT_SCREEN);
+    public void onOpenDetailScreen(final int userId) {
+
+        router.navigateTo(Const.ScreenKey.DETAIL_USER_FRAGMENT_SCREEN, userId);
+    }
+
+    public UsersPresenter setRouter(Router localRouter) {
+        this.router = localRouter;
+        return this;
+    }
+
+    public UsersPresenter setUsersUseCase(UsersUseCase localUsersUseCase) {
+        this.usersUseCase = localUsersUseCase;
+        return this;
     }
 
     private final class UsersObserver extends CustomDisposableSubscriber<List<UserDomainModel>> {

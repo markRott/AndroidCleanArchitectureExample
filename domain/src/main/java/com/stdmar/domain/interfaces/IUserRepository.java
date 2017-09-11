@@ -1,4 +1,4 @@
-package com.stdmar.domain;
+package com.stdmar.domain.interfaces;
 
 import com.stdmar.domain.models.UserDomainModel;
 
@@ -10,7 +10,7 @@ import io.reactivex.Flowable;
  * Created by sma on 05.09.17.
  */
 
-public interface IRepository {
+public interface IUserRepository {
 
     Flowable<List<UserDomainModel>> getUsers();
 

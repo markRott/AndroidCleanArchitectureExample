@@ -3,6 +3,7 @@ package com.stdmar.fcleanarchprj;
 import android.app.Application;
 
 import com.stdmar.fcleanarchprj.di.ComponentsHelper;
+import com.stdmar.fcleanarchprj.di.app.MyApplicationComponent;
 
 /**
  * Created by sma on 06.09.17.
@@ -10,18 +11,19 @@ import com.stdmar.fcleanarchprj.di.ComponentsHelper;
 
 public class MyApplication extends Application {
 
-    public static MyApplication INSTANCE;
-    public static ComponentsHelper COMPONENTS_HELPER;
+    private MyApplicationComponent myApplicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        INSTANCE = this;
         initComponentsHelper();
     }
 
+    public MyApplicationComponent getMyApplicationComponent() {
+        return myApplicationComponent;
+    }
+
     private void initComponentsHelper() {
-        COMPONENTS_HELPER = new ComponentsHelper();
-        COMPONENTS_HELPER.initMyApplicationComponent(this);
+        myApplicationComponent = ComponentsHelper.initMyApplicationComponent(this);
     }
 }

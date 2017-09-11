@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import com.sma.data.rest.IApplicationApi;
 import com.sma.data.utils.INetworkUtils;
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 import com.stdmar.fcleanarchprj.di.app.modules.ApplicationApiModule;
 import com.stdmar.fcleanarchprj.di.app.modules.ApplicationModule;
 import com.stdmar.fcleanarchprj.di.app.modules.NavigationModule;

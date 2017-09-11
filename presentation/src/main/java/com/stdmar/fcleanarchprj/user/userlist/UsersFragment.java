@@ -11,10 +11,13 @@ import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.UserDomainModel;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseDividerItemDecoration;
 import com.stdmar.fcleanarchprj.base.BaseFragment;
+import com.stdmar.fcleanarchprj.base.IRecyclerItemTouchListener;
+import com.stdmar.fcleanarchprj.di.ComponentsHelper;
+import com.stdmar.fcleanarchprj.di.IHasComponent;
+import com.stdmar.fcleanarchprj.di.users.list.UsersListComponent;
 
 import java.util.List;
 
@@ -22,7 +25,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.stdmar.fcleanarchprj.base.BaseDividerItemDecoration.VERTICAL_LIST;
 
@@ -30,32 +32,31 @@ import static com.stdmar.fcleanarchprj.base.BaseDividerItemDecoration.VERTICAL_L
  * Created by sma on 09.09.17.
  */
 
-public class UsersFragment extends BaseFragment implements ILoadUsersView, IBackButtonListener {
+public class UsersFragment extends BaseFragment implements ILoadUsersView, IBackButtonListener,
+        IHasComponent<UsersListComponent>, IRecyclerItemTouchListener<UserDomainModel> {
 
+    // Viewvs
     @BindView(R.id.pb_load_users)
     ProgressBar pbLoadUsers;
     @BindView(R.id.rcv_users)
     RecyclerView rcvUsers;
 
+    // Objects
     @Inject
     UsersAdapter usersAdapter;
     @InjectPresenter
     UsersPresenter usersPresenter;
+
+    private UsersListComponent usersListComponent;
 
     public static UsersFragment newInstance() {
         return new UsersFragment();
     }
 
     @Override
-    protected void inject() {
-        MyApplication.COMPONENTS_HELPER.initUsersListComponent();
-        MyApplication.COMPONENTS_HELPER.getUsersListComponent().injectInUsersFragment(this);
-        usersPresenter.inject();
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeInjector();
     }
 
     @Nullable
@@ -74,6 +75,7 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setDataForPresenter();
     }
 
     @Override
@@ -102,17 +104,37 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
     public void renderUsersList(List<UserDomainModel> userDomainModelList) {
         if (userDomainModelList == null || userDomainModelList.isEmpty()) return;
         usersAdapter.setData(userDomainModelList);
-        System.out.println("renderUsersList");
+        usersAdapter.setItemTouchListener(this);
     }
 
-    @OnClick(R.id.btn_stub_detail)
-    public void clickOnOpenDetail() {
-        usersPresenter.onOpenDetailScreen();
+    @Override
+    public UsersListComponent getComponent() {
+        return usersListComponent;
+    }
+
+    @Override
+    public void onTouch(int position, UserDomainModel data) {
+        usersPresenter.onOpenDetailScreen(data.getUserId());
     }
 
     private void setupRecyclerView() {
         rcvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
         rcvUsers.addItemDecoration(new BaseDividerItemDecoration(getContext(), VERTICAL_LIST));
         rcvUsers.setAdapter(usersAdapter);
+    }
+
+    private void initializeInjector() {
+        if (usersListComponent == null) {
+            usersListComponent = ComponentsHelper
+                    .initAndGetUsersListComponent(getMyApplicationComponent());
+
+            usersListComponent.injectInUsersFragment(this);
+        }
+    }
+
+    private void setDataForPresenter() {
+        usersPresenter
+                .setRouter(usersListComponent.router())
+                .setUsersUseCase(usersListComponent.usersUseCase());
     }
 }

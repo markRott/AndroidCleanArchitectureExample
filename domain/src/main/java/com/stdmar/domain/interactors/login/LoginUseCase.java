@@ -1,7 +1,7 @@
 package com.stdmar.domain.interactors.login;
 
-import com.stdmar.domain.ILoginRepository;
-import com.stdmar.domain.IPostExecutionThread;
+import com.stdmar.domain.interfaces.ILoginRepository;
+import com.stdmar.domain.interfaces.IPostExecutionThread;
 import com.stdmar.domain.interactors.BaseUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
 

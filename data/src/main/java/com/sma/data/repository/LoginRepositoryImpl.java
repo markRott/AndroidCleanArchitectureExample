@@ -3,7 +3,7 @@ package com.sma.data.repository;
 import com.sma.data.entity.LoginEntity;
 import com.sma.data.entity.mapper.LoginEntityDataMapper;
 import com.sma.data.rest.IApplicationApi;
-import com.stdmar.domain.ILoginRepository;
+import com.stdmar.domain.interfaces.ILoginRepository;
 import com.stdmar.domain.models.LoginDomainModel;
 
 import io.reactivex.Flowable;

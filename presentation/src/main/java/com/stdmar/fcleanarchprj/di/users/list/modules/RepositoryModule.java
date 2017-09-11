@@ -1,11 +1,12 @@
-package com.stdmar.fcleanarchprj.di.users.modules;
+package com.stdmar.fcleanarchprj.di.users.list.modules;
 
 import com.sma.data.entity.mapper.UserEntityDataMapper;
 import com.sma.data.repository.UserRepositoryImpl;
 import com.sma.data.repository.datasource.UserDataStoreFactory;
 import com.sma.data.rest.IApplicationApi;
-import com.stdmar.domain.IRepository;
-import com.stdmar.fcleanarchprj.di.users.UsersListScope;
+import com.stdmar.domain.interfaces.IUserRepository;
+import com.stdmar.fcleanarchprj.di.customqualifier.UsersListQualifier;
+import com.stdmar.fcleanarchprj.di.users.list.UsersListScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,6 +27,7 @@ public class RepositoryModule {
 
     @Provides
     @UsersListScope
+    @UsersListQualifier
     public UserEntityDataMapper provideUserEntityDataMapper() {
 
         return new UserEntityDataMapper();
@@ -33,9 +35,11 @@ public class RepositoryModule {
 
     @Provides
     @UsersListScope
-    public IRepository provideRepository(
+    public IUserRepository provideRepository(
             UserDataStoreFactory factory,
-            UserEntityDataMapper mapper) {
+            @UsersListQualifier
+                    UserEntityDataMapper mapper
+    ) {
 
         return new UserRepositoryImpl(factory, mapper);
     }

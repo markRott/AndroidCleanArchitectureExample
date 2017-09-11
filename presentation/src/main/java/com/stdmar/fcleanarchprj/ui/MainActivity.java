@@ -5,12 +5,10 @@ import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.stdmar.fcleanarchprj.Const;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
-import com.stdmar.fcleanarchprj.user.detailuser.DetailUserFragment;
 import com.stdmar.fcleanarchprj.user.userlist.IBackButtonListener;
-import com.stdmar.fcleanarchprj.user.userlist.UsersFragment;
+import com.stdmar.fcleanarchprj.utils.FragmentFactory;
 
 import butterknife.ButterKnife;
 import ru.terrakok.cicerone.Navigator;
@@ -21,6 +19,9 @@ import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 import ru.terrakok.cicerone.commands.Replace;
 
+/**
+ * MainActivity - displays 2 fragments: UsersFragment and DetailUserFragment
+ */
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -29,15 +30,14 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             navigator.applyCommand(new Replace(Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN, null));
         }
     }
 
     @Override
     protected void inject() {
-
-        MyApplication.COMPONENTS_HELPER.getMyApplicationComponent().inject(this);
+        getMyApplicationComponent().inject(this);
     }
 
     @Override
@@ -70,7 +70,8 @@ public class MainActivity extends BaseActivity {
 
                 @Override
                 protected Fragment createFragment(String screenKey, Object data) {
-                    return getFragmentByKey(screenKey);
+
+                    return FragmentFactory.getFragmentByKey(screenKey, data);
                 }
 
                 @Override
@@ -100,14 +101,15 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private Fragment getFragmentByKey(final String key) {
-        switch (key) {
-            case Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN:
-                return UsersFragment.newInstance();
-            case Const.ScreenKey.DETAIL_USER_FRAGMENT_SCREEN:
-                return DetailUserFragment.newInstance();
-            default:
-                return null;
-        }
-    }
+//    private Fragment getFragmentByKey(final String key) {
+//        switch (key) {
+//            case Const.ScreenKey.USERS_LIST_FRAGMENT_SCREEN:
+//                return UsersFragment.newInstance();
+//            case Const.ScreenKey.DETAIL_USER_FRAGMENT_SCREEN:
+//                return DetailUserFragment.newInstance();
+//            default:
+//                return null;
+//        }
+//    }
+
 }

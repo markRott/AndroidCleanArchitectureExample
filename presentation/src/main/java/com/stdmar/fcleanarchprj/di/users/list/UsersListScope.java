@@ -1,4 +1,4 @@
-package com.stdmar.fcleanarchprj.di.users;
+package com.stdmar.fcleanarchprj.di.users.list;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

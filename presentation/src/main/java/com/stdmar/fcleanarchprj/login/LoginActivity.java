@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.LoginDomainModel;
 import com.stdmar.fcleanarchprj.Const;
-import com.stdmar.fcleanarchprj.MyApplication;
 import com.stdmar.fcleanarchprj.R;
 import com.stdmar.fcleanarchprj.base.BaseActivity;
+import com.stdmar.fcleanarchprj.di.ComponentsHelper;
+import com.stdmar.fcleanarchprj.di.IHasComponent;
+import com.stdmar.fcleanarchprj.di.login.LoginComponent;
 import com.stdmar.fcleanarchprj.ui.MainActivity;
 
 import butterknife.BindView;
@@ -25,7 +27,7 @@ import ru.terrakok.cicerone.commands.Back;
 import ru.terrakok.cicerone.commands.Command;
 import ru.terrakok.cicerone.commands.Forward;
 
-public class LoginActivity extends BaseActivity implements ILoginView {
+public class LoginActivity extends BaseActivity implements ILoginView, IHasComponent<LoginComponent> {
 
     @BindView(R.id.edt_login)
     EditText edtLogin;
@@ -39,11 +41,16 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @InjectPresenter
     LoginPresenter loginPresenter;
 
+    private LoginComponent loginComponent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        initializeInjector();
+        setLoginPresenterData();
     }
 
     @Override
@@ -59,14 +66,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
-    protected void inject() {
-        MyApplication.COMPONENTS_HELPER.getMyApplicationComponent().inject(this);
-        MyApplication.COMPONENTS_HELPER.initLoginComponent();
-        loginPresenter.inject();
-        loginPresenter.setRouter(router);
-    }
-
-    @Override
     public void onBackPressed() {
         loginPresenter.onBackPressed();
     }
@@ -74,7 +73,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @OnClick(R.id.btn_login)
     public void clickOnLogin() {
         if (loginPresenter == null) return;
-        loginPresenter.runLoginUseCase();
+        loginPresenter.runLoginRequest();
     }
 
     @Override
@@ -107,6 +106,23 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void showErrorMessage(String errorMsg) {
         Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
         System.out.println("errorMsg = " + errorMsg);
+    }
+
+    @Override
+    public LoginComponent getComponent() {
+
+        return loginComponent;
+    }
+
+    private void initializeInjector() {
+        loginComponent = ComponentsHelper.initAndGetLoginComponent(getMyApplicationComponent());
+        getMyApplicationComponent().inject(this);
+    }
+
+    private void setLoginPresenterData() {
+        loginPresenter
+                .setLoginUseCase(loginComponent.loginUseCase())
+                .setRouter(loginComponent.router());
     }
 
     private void enableOrDisableView(boolean state, View... views) {
