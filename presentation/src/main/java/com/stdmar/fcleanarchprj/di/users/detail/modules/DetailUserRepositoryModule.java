@@ -1,7 +1,6 @@
 package com.stdmar.fcleanarchprj.di.users.detail.modules;
 
 import com.sma.data.entity.mapper.UserEntityDataMapper;
-import com.sma.data.entity.mapper.UserEntityDataMapperForDetailUser;
 import com.sma.data.repository.DetailUserRepositoryImpl;
 import com.sma.data.rest.IApplicationApi;
 import com.stdmar.domain.interfaces.IDetailUserRepository;
@@ -23,7 +22,7 @@ public class DetailUserRepositoryModule {
     @DetailsQualifier
     public UserEntityDataMapper provideUserEntityDataMapper() {
 
-        return new UserEntityDataMapperForDetailUser();
+        return new UserEntityDataMapper();
     }
 
     @Provides
