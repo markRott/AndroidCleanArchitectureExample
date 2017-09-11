@@ -1,5 +1,7 @@
 package com.stdmar.fcleanarchprj.login;
 
+import android.support.annotation.NonNull;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.stdmar.domain.interactors.login.LoginUseCase;
 import com.stdmar.domain.models.LoginDomainModel;
@@ -36,12 +38,12 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginN
         loginUseCase.execute(new LoginFlowable(), null);
     }
 
-    public LoginPresenter setRouter(Router router) {
+    public LoginPresenter setRouter(@NonNull Router router) {
         this.router = router;
         return this;
     }
 
-    public LoginPresenter setLoginUseCase(LoginUseCase loginUseCase) {
+    public LoginPresenter setLoginUseCase(@NonNull LoginUseCase loginUseCase) {
         this.loginUseCase = loginUseCase;
         return this;
     }
@@ -61,7 +63,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginN
         getViewState().hideProgressBar();
     }
 
-    private class LoginFlowable extends CustomDisposableSubscriber<LoginDomainModel> {
+    public class LoginFlowable extends CustomDisposableSubscriber<LoginDomainModel> {
 
         @Override
         public void onNext(LoginDomainModel loginDomainModel) {
