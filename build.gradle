@@ -55,3 +55,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//task runDomainUnitTest(dependsOn: [':domain:tests']) {
+//
+//    description 'Run unit tests for the domain layer.'
+//}
