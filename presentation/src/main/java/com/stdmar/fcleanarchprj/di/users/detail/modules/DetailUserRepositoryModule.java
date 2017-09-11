@@ -30,8 +30,7 @@ public class DetailUserRepositoryModule {
     public IDetailUserRepository provideDetailUserRepository(
             IApplicationApi api,
             @DetailsQualifier
-            UserEntityDataMapper mapper
-    ) {
+            UserEntityDataMapper mapper) {
 
         return new DetailUserRepositoryImpl(api, mapper);
     }

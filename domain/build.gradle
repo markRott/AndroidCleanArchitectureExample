@@ -4,6 +4,10 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava}"
     compile "javax.inject:javax.inject:${rootProject.ext.javaxInject}"
+
+    testCompile "junit:junit:4.12"
+    compile "org.mockito:mockito-core:2.10.0"
+    compile "org.assertj:assertj-core:3.8.0"
 }
 
 sourceCompatibility = "1.7"

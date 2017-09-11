@@ -25,6 +25,8 @@ public class UsersUseCase extends BaseUseCase<List<UserDomainModel>, Void> {
     @Override
     public Flowable<List<UserDomainModel>> buildUseCaseObservable(Void unused) {
 
-        return repository.getUsers();
+        Flowable<List<UserDomainModel>> listFlowable = repository.getUsers();
+        System.out.println("listFlowable = " + listFlowable);
+        return listFlowable;
     }
 }

@@ -26,7 +26,7 @@ public class DetailUserPresenter extends BasePresenter<IDetailUserView> {
         detailUserUseCase.execute(new DetailUserFlowable(), params);
     }
 
-    public void setDetailUserUseCase(DetailUserUseCase detailUserUseCase){
+    public void setDetailUserUseCase(DetailUserUseCase detailUserUseCase) {
         this.detailUserUseCase = detailUserUseCase;
     }
 
@@ -35,6 +35,7 @@ public class DetailUserPresenter extends BasePresenter<IDetailUserView> {
         public void onNext(UserDomainModel o) {
             getViewState().hideProgressBar();
             getViewState().renderUser(o);
+            System.out.println("UserDomainModel = " + o);
         }
 
         @Override

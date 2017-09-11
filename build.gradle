@@ -42,6 +42,8 @@ allprojects {
         moxyAppCompat = "1.5.3"
         picasso = "2.5.2"
         cicerone = "2.1.0"
+        debugCompileLeakcanary = "1.5.2"
+        releaseCompileLeakcanary = "1.5.2"
     }
 
 }

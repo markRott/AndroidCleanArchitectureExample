@@ -8,12 +8,11 @@ android {
     defaultConfig {
 
         applicationId "com.stdmar.fcleanarchprj"
-
         minSdkVersion 21
         targetSdkVersion 26
-
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -64,6 +63,9 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
     compile "com.squareup.picasso:picasso:${rootProject.ext.picasso}"
     compile "ru.terrakok.cicerone:cicerone:${rootProject.ext.cicerone}"
+
+    debugCompile "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.debugCompileLeakcanary}"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.releaseCompileLeakcanary}"
 
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
