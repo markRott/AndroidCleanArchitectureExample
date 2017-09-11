@@ -1,14 +1,9 @@
 package com.stdmar.fcleanarchprj.login;
 
 import com.stdmar.domain.interactors.login.LoginUseCase;
-import com.stdmar.domain.interfaces.ILoginRepository;
-import com.stdmar.domain.interfaces.IPostExecutionThread;
-import com.stdmar.domain.models.LoginDomainModel;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -35,15 +30,6 @@ public class LoginPresenterTest {
     Router router;
     @Mock
     LoginUseCase loginUseCase;
-    @Mock
-    IPostExecutionThread postExecutionThread;
-    @Mock
-    ILoginRepository loginRepository;
-    @Mock
-    LoginDomainModel loginDomainModel;
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     LoginPresenter loginPresenter;
 
