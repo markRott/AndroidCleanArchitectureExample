@@ -9,7 +9,7 @@ import com.stdmar.fcleanarchprj.di.customqualifier.UsersListQualifier;
 import com.stdmar.fcleanarchprj.di.users.list.modules.RepositoryModule;
 import com.stdmar.fcleanarchprj.di.users.list.modules.UsersAdapterModule;
 import com.stdmar.fcleanarchprj.di.users.list.modules.UsersUseCaseModule;
-import com.stdmar.fcleanarchprj.user.userlist.UsersAdapter;
+import com.stdmar.fcleanarchprj.user.userlist.adapter.UsersAdapter;
 import com.stdmar.fcleanarchprj.user.userlist.UsersFragment;
 
 import dagger.Component;

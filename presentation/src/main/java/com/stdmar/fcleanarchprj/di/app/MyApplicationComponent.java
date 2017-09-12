@@ -2,6 +2,7 @@ package com.stdmar.fcleanarchprj.di.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.LayoutInflater;
 
 import com.sma.data.rest.IApplicationApi;
 import com.sma.data.utils.INetworkUtils;
@@ -54,4 +55,6 @@ public interface MyApplicationComponent {
     Router router();
 
     NavigatorHolder navigatorHolder();
+
+    LayoutInflater layoutInflater();
 }

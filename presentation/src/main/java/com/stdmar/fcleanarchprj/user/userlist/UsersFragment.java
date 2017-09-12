@@ -19,6 +19,7 @@ import com.stdmar.fcleanarchprj.base.IRecyclerItemTouchListener;
 import com.stdmar.fcleanarchprj.di.ComponentsHelper;
 import com.stdmar.fcleanarchprj.di.IHasComponent;
 import com.stdmar.fcleanarchprj.di.users.list.UsersListComponent;
+import com.stdmar.fcleanarchprj.user.userlist.adapter.UsersAdapter;
 
 import java.util.List;
 

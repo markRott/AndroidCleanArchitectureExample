@@ -3,6 +3,7 @@ package com.stdmar.fcleanarchprj.di.app.modules;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 
 import com.sma.data.utils.INetworkUtils;
 import com.sma.data.utils.NetworkUtilsImpl;
@@ -40,5 +41,13 @@ public class UtilsModule {
     SharedPreferences providesSharedPreferences(Context context) {
 
         return PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
+    //LayoutInflater
+    @Provides
+    @Singleton
+    LayoutInflater providesLayoutInflater(Context context) {
+
+        return LayoutInflater.from(context);
     }
 }
