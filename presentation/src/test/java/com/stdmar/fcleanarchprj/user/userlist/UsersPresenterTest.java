@@ -37,6 +37,7 @@ public class UsersPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+
         testUsersPresenter = new UsersPresenter();
         testUsersPresenter.attachView(testLoadUsersView);
         testUsersPresenter.setViewState(testLoadUsersViewState);

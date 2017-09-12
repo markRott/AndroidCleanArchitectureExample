@@ -15,11 +15,6 @@ public class DetailUserPresenter extends BasePresenter<IDetailUserView> {
 
     private DetailUserUseCase detailUserUseCase;
 
-    @Override
-    protected void onFirstViewAttach() {
-        super.onFirstViewAttach();
-    }
-
     public void fetchUserById(final int userId) {
         getViewState().showProgressBar();
         DetailUserUseCase.Params params = DetailUserUseCase.Params.buildParams(userId);
