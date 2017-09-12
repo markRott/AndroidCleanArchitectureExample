@@ -17,10 +17,4 @@ public class DiscUserDataStore implements IUserDataStore {
 
         return null;
     }
-
-    @Override
-    public Flowable<UserEntity> userEntityDetails(int userId) {
-
-        return null;
-    }
 }

@@ -13,6 +13,4 @@ import io.reactivex.Flowable;
 public interface IUserDataStore {
 
     Flowable<List<UserEntity>> userEntityList();
-
-    Flowable<UserEntity> userEntityDetails(final int userId);
 }

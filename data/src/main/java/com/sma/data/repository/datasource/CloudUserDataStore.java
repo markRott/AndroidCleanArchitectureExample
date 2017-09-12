@@ -25,10 +25,4 @@ public class CloudUserDataStore implements IUserDataStore {
 
         return applicationApi.fetchUsers();
     }
-
-    @Override
-    public Flowable<UserEntity> userEntityDetails(int userId) {
-
-        return null;
-    }
 }
