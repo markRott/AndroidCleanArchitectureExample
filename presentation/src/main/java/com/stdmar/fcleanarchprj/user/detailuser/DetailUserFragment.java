@@ -43,6 +43,8 @@ public class DetailUserFragment extends BaseFragment
     ImageView ivAvatar;
     @BindView(R.id.pb_detail_user)
     ProgressBar pbLoadUser;
+    @BindView(R.id.tv_load_detail_user_error)
+    TextView tvLoadUserError;
 
     @Inject
     IImageLoader imageLoader;
@@ -112,6 +114,11 @@ public class DetailUserFragment extends BaseFragment
                 userDomainModel.getCoverUrl(),
                 ivAvatar, R.mipmap.ic_launcher,
                 R.mipmap.ic_launcher);
+    }
+
+    @Override
+    public void showError(String error) {
+        tvLoadUserError.setText(error);
     }
 
     private void setUserId() {

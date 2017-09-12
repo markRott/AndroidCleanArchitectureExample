@@ -21,7 +21,7 @@ public interface IApplicationApi {
     @GET(baseUrl + "users.json")
     Flowable<List<UserEntity>> fetchUsers();
 
-    @GET(baseUrl + "user_" + "{userId}" + ".json")
+    @GET(baseUrl + "user_" + "{userId}" + ".json_")
     Flowable<UserEntity> fetchUserById(@Path("userId") int userId);
 
     @GET("http://www.mocky.io/v2/59b12fe32600009305287ef9")

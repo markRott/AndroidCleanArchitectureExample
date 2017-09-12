@@ -36,6 +36,7 @@ public class DetailUserPresenter extends BasePresenter<IDetailUserView> {
         @Override
         public void onError(Throwable t) {
             getViewState().hideProgressBar();
+            getViewState().showError(t.getMessage());
         }
     }
 }

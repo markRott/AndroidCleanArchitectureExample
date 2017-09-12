@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.stdmar.domain.models.UserDomainModel;
@@ -40,6 +41,8 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
     ProgressBar pbLoadUsers;
     @BindView(R.id.rcv_users)
     RecyclerView rcvUsers;
+    @BindView(R.id.tv_load_users_error)
+    TextView tvLoadUsersError;
 
     // Objects
     @Inject
@@ -105,6 +108,11 @@ public class UsersFragment extends BaseFragment implements ILoadUsersView, IBack
         if (userDomainModelList == null || userDomainModelList.isEmpty()) return;
         usersAdapter.setData(userDomainModelList);
         usersAdapter.setItemTouchListener(this);
+    }
+
+    @Override
+    public void showError(String error) {
+        tvLoadUsersError.setText(error);
     }
 
     @Override

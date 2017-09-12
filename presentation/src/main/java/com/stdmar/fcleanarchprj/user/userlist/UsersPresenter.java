@@ -77,6 +77,7 @@ public class UsersPresenter extends BasePresenter<ILoadUsersView> {
         @Override
         public void onError(Throwable t) {
             getViewState().hideProgressBar();
+            getViewState().showError(t.getMessage());
         }
     }
 
