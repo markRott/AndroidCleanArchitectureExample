@@ -16,8 +16,6 @@ import ru.terrakok.cicerone.Router;
 @LoginScope
 public interface LoginComponent {
 
-//    void injectToLoginActivity(LoginActivity loginActivity);
-
     LoginEntityDataMapper mapper();
 
     ILoginRepository loginRepository();
